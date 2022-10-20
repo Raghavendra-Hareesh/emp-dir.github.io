@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Directory</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="titleLogo"><a href="#">KEKA</a></div>
+            <div class="menu">
+                    <button>HOME</button>
+                    <button class="active">DETAILS</button>
+                    <button>ABOUT</button>
+            </div>
+        </div>
+        <div class="toggle_btn">
+            <button class="card-btn" id="cb" onclick="cardview()"><img src="assets/cards.png" alt=""></button>
+            <button class="list-btn" id="lb" onclick="listview()"><img src="assets/list.png" alt=""></button>
+        </div>
+    </nav>
+
+    <div class="content_table">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Role</th>
+                <th scope="col">Email</th>
+                <th scope="col">Department</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Raghavendra</td>
+                    <td>Hareesh</td>
+                    <td>Intern</td>
+                    <td>Raghavendra.p@technovert.com</td>
+                    <td>Product Engineer</td>
+                    <td>7675943743</td>
+                    <td>Kondapur</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Karthik Sai</td>
+                    <td>Varma</td>
+                    <td>Intern</td>
+                    <td>Karthik.p@technovert.com</td>
+                    <td>Product Engineer</td>
+                    <td>8978803288</td>
+                    <td>Kondapur</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Bharath</td>
+                    <td>Vaddadi</td>
+                    <td>Intern</td>
+                    <td>Bharath.v@technovert.com</td>
+                    <td>Product Engineer</td>
+                    <td>8897183308</td>
+                    <td>Kondapur</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Shyam</td>
+                    <td>Sundar</td>
+                    <td>Intern</td>
+                    <td>Shyam.s@technovert.com</td>
+                    <td>Product Engineer</td>
+                    <td>8978507286</td>
+                    <td>Kondapur</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="content cardView">
+        <div class="content_menu">
+            <div class="cross"><label for="click">X</label></div>
+            <div class="content_menu_body">
+                <!-- <span>Search by Name</span>
+                <ul class="filter_type filter_name">
+                    <li><input class="name_search" type="text" placeholder="First Name" id="fname_fil"></li>
+                    <li><input class="name_search" type="text" placeholder="Last Name" id="lname_fil"></li>
+                </ul> -->
+
+                <span>Department</span>
+                <ul class="filter_type filter_name" id="dept_ul">
+                    <li>
+                        <input type="checkbox" name="dept" id="dept_All">
+                        <label for="dept_All">All</label>
+                    </li>
+                </ul>
+
+                <span>Branch</span>
+                <ul class="filter_type filter_name" id="branch_ul">
+                    <li>
+                        <input type="checkbox" name="branch" id="branch_All">
+                            <label for="branch_all">All</label>
+                    </li>
+                </ul>
+
+                <span>Experience</span>
+                <ul class="filter_type filter_name" id="exp_ul">
+                    <li>
+                        <input type="checkbox" name="exp" id="exp_All">
+                            <label for="exp_all">All</label>
+                    </li>
+                </ul>
+                <div class="submit-btn"><button id="submit">Submit</button></div>
+            </div>
+        </div>
+        <div class="employee_details">
+            <div class="letter">
+                <label for="click"><img src="assets/menu.png" class="menu-button"></label>
+                <input type="checkbox" id="click" onclick="fun2()">
+                <div class="letter_filter"></div>
+            </div>
+            <div class="add_emp">
+                <p>Search by name : <input class="name_search" type="text" placeholder="First Name" id="fname_fil">&nbsp;<input class="name_search" type="text" placeholder="Last Name" id="lname_fil"></p>
+                <button id="addEmployee" onclick="displayRegForm()">Add Employee</button>
+            </div>
+
+            <div class="reg_form" id="registration_form">
+                <div>
+                    <ul class="reg_form_lst">
+                        <li><p class="form_title">Register</p></li>
+                        <li><input type="text" placeholder="First Name" id="reg_fname"></li>
+                        <li><input type="text" placeholder="Last Name" id="reg_lname"></li>
+                        <li><input type="text" placeholder="Email ID" id="reg_email"><span> @technovert.com</span></li>
+                        <li><input type="text" placeholder="Phone Number" id="reg_phone"></li>
+                        <li><input type="text" placeholder="Department" id="reg_dept"></li>
+                        <li><input type="text" placeholder="(Intern / Full Time)" id="reg_role"></li>
+                        <li><input type="text" placeholder="Location" id="reg_location"></li>
+                        <li><input type="file" id="image_uploaded" accept="image/png, image/jpg"></li>
+                        <li><button type="submit" onclick="closeForm(),addEmployeeData()">Submit</button></li> 
+                        <li><button class="close_form" onclick="closeForm()">Close</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="employee_cards" id="emp_crds">
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/data.js"></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
