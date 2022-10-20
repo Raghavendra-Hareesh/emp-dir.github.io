@@ -569,7 +569,7 @@ function addEmployeeData()
     emp_data.push(fname);
     emp_data.push(lname);
     emp_data.push(role);
-    emp_data.push("../assets/nil.jpg");
+    emp_data.push("assets/nil.jpg");
     emp_data.push(email + "@technovert.com");
     emp_data.push(dept);
     emp_data.push(phone);
