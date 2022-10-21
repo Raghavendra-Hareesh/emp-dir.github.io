@@ -255,11 +255,11 @@ for(let i=0; i<26; i++)
 function generateCard()
 {
     data.forEach((element,i) =>{
-        generateNewCard(data[i]);
+        generateNewCard(data[i],i);
     });
 }
 
-function generateNewCard(emp_data)
+function generateNewCard(emp_data,i)
 {
     const emp_Crd = document.querySelector(".employee_cards");
 
@@ -276,7 +276,7 @@ function generateNewCard(emp_data)
         const empCard = `
         <div class="emp_card" id="${unq_class_name}" onclick="empPopUpOpen('${unq_class_name}','${unq_class_name_popup}')">
             <div class="card_top"></div>
-            <div class="card_img"><img src=${emp_data[3]} alt="image" width= "140px" height="140px"></div>
+            <div class="card_img"><img id="card_img_${i}" src=${emp_data[3]} alt="image" width= "140px" height="140px"></div>
             <div class="card_details">
                 <span class="emp_card_details emp_name">${emp_data[0]}</span>
                 <span class="emp_card_details emp_name">${emp_data[1]}</span>
@@ -296,8 +296,7 @@ function generateNewCard(emp_data)
         </div>
 
         <div class="emp_popup_div" id="${unq_class_name_popup}">
-            <div class="card_edit_top"></div>
-            <div class="card_edit_img"><img src=${emp_data[3]} alt="image" width= "110px" height="110px"></div>
+            <!--div class="card_edit_top"--></!--div>
             <div class="card_edit_details">
                 <span class = "emp_popup_edit">
                     <div class="name_box">
@@ -309,11 +308,12 @@ function generateNewCard(emp_data)
                     <input type="text" placeholder="${emp_data[6]}" disabled id="${unq_class_name_popup}_edit_phone"><br>
                     <input type="text" placeholder="${emp_data[5]}" disabled id="${unq_class_name_popup}_edit_dept"><br>
                     <input type="text" placeholder="${emp_data[7]}" disabled id="${unq_class_name_popup}_edit_loc"><br>
+                    <div class="edit_image_upload">Change Image : <input type="file" id="edit_img"></div>
                 </span>
             </div>
             <div class="card_edit_footer">
                 <button onclick="enableInputs('${unq_class_name_popup}')">Edit</button>
-                <button onclick="empPopUpClose('${unq_class_name_popup}','${unq_class_name}'),editEmployeeDetails('${unq_class_name_popup}','${unq_class_name}')">Save</button>
+                <button onclick="empPopUpClose('${unq_class_name_popup}','${unq_class_name}'),editEmployeeDetails('${unq_class_name_popup}','${unq_class_name}',${i})">Save</button>
             </div>
         </div>
 
@@ -372,7 +372,16 @@ function enableInputs(x)
     }
 }
 
-function editEmployeeDetails(x,y)
+var edit_image_input = document.getElementById("edit_img");
+
+var up_image = "";
+
+edit_image_input.addEventListener("change", function(event){
+    up_image += URL.createObjectURL(event.target.files[0]);
+    console.log(up_image);
+},false);
+
+function editEmployeeDetails(x,y,i)
 {
     var emp_card = document.getElementById(y);
     var det = emp_card.getElementsByClassName("emp_card_details");
@@ -392,23 +401,56 @@ function editEmployeeDetails(x,y)
     var dept = document.getElementById(x+"_edit_dept").value;
     // det[7].innerText
     var loc = document.getElementById(x+"_edit_loc").value;
+    
+    var img_id = "card_img_" +i;
+
+    var popup_img = document.getElementById(img_id);
+
+    if(up_image)
+        popup_img.setAttribute("src",up_image);
+
+    // popup_img.innerHTML = `<img src=${up_image} alt="image" width= "140px" height="140px">`;
+    // setAttribute("src",up_image);
+
+    console.log(up_image);
 
     if(String(fname))
+    {
         det[0].innerText = fname;
+        data[i][0] = fname;
+    }
     if(String(lname))
+    {
         det[1].innerText = lname;
+        data[i][1] = lname;
+    }
     if(String(role))
+    {
         det[2].innerText = role;
+        data[i][2] = role;
+    }
     if(String(email))
+    {
         det[3].innerText = email;
+        data[i][4] = email;
+    }
     if(String(phone))
+    {
         det[4].innerText = phone;
+        data[i][6] = phone;
+    }
     if(String(dept))
+    {
         det[5].innerText = dept;
-    if(loc != null)
+        data[i][5] = dept;
+    }
+    if(String(loc))
+    {
         det_loc.innerText = loc;
+        data[i][7] = lname;
+    }
 
-    console.log(det);
+    // console.log(det);
 }
 
 function myfunction(c)
@@ -543,8 +585,7 @@ function update_img_status()
     status.innerText = "Uploaded";
 }
 
-var image_input = document.getElementById("registration_form");
-var img = image_input.querySelector('input[type="file"]');
+var image_input = document.getElementById("image_uploaded");
     
 var uploaded_image = "";
 
@@ -569,7 +610,7 @@ function addEmployeeData()
     emp_data.push(fname);
     emp_data.push(lname);
     emp_data.push(role);
-    emp_data.push("assets/nil.jpg");
+    emp_data.push("../assets/nil.jpg");
     emp_data.push(email + "@technovert.com");
     emp_data.push(dept);
     emp_data.push(phone);
