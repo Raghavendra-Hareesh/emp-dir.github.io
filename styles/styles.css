@@ -142,6 +142,10 @@ nav .menu .active {
   border-radius: 0.5em;
 }
 
+.submit-btn button:hover{
+  font-weight: bold;
+}
+
 .employee_details {
   display: block;
   margin-left: 0;
