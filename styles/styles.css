@@ -380,10 +380,13 @@ nav .menu .active {
   display: none;
 }
 
+.card_edit_details{
+  padding-top: 1em;
+}
 .emp_popup_edit input{
   width: 20em;
-  height: 2.72em;
-  margin: 0.3em;
+  height: 3em;
+  margin: 0.5em;
 }
 
 .card_edit_img img {
@@ -392,12 +395,30 @@ nav .menu .active {
   z-index: 1;
   margin-top: -5em;
   margin-left: 6.2em;
-  margin-bottom: 1em;
+  margin-bottom: 0.6em;
+  cursor: pointer;
+}
+
+.edit_image_upload{
+  display: flex;
+  justify-content: center;
+  padding-top:1.5em;
+  align-items: center;
+  padding-left: 2.8em;
+  font-weight: bold
+}
+
+.edit_image_upload input{
+  /* font-size: small; */
+  /* margin-left: 3.1em; */
+  
+  /* margin-top: 1em; */
+  margin-bottom: -0.5em;
 }
 
 .card_edit_top {
   height: 6em;
-  background-color: rgb(220, 218, 218);
+  /* background-color: rgb(220, 218, 218); */
   border-radius: 0.5em 0.5em 0 0;
 }
 
@@ -412,13 +433,4 @@ nav .menu .active {
 .card_edit_footer button{
   margin: 0.7em;
   width: 5em;
-}
-
-.name_box{
-  display: flex;
-  justify-content: center;
-}
-
-.name_box input{
-  width: 9.7em;
 }
