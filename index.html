@@ -10,13 +10,9 @@
 </head>
 <body>
     <nav>
-        <div class="navbar">
-            <div class="titleLogo"><a href="#">KEKA</a></div>
-            <div class="menu">
-                    <button>HOME</button>
-                    <button class="active">DETAILS</button>
-                    <button>ABOUT</button>
-            </div>
+        <div class="titleLogo"><a href="#">KEKA</a></div>
+        <div class="menu">
+            Employee Directory
         </div>
         <div class="toggle_btn">
             <button class="card-btn" id="cb" onclick="cardview()"><img src="assets/cards.png" alt=""></button>
@@ -125,23 +121,42 @@
                 <div class="letter_filter"></div>
             </div>
             <div class="add_emp">
-                <p>Search by name : <input class="name_search" type="text" placeholder="First Name" id="fname_fil">&nbsp;<input class="name_search" type="text" placeholder="Last Name" id="lname_fil"></p>
+                <p><input class="name_search" type="text" placeholder="Search by First Name" id="fname_fil">&nbsp;<input class="name_search" type="text" placeholder="Search by Last Name" id="lname_fil"></p>
                 <button id="addEmployee" onclick="displayRegForm()">Add Employee</button>
             </div>
 
             <div class="reg_form" id="registration_form">
-                <div>
+                <div class="reg_form_div">
                     <ul class="reg_form_lst">
                         <li><p class="form_title">Register</p></li>
-                        <li><input type="text" placeholder="First Name" id="reg_fname"></li>
-                        <li><input type="text" placeholder="Last Name" id="reg_lname"></li>
-                        <li><input type="text" placeholder="Email ID" id="reg_email"><span> @technovert.com</span></li>
-                        <li><input type="text" placeholder="Phone Number" id="reg_phone"></li>
-                        <li><input type="text" placeholder="Department" id="reg_dept"></li>
-                        <li><input type="text" placeholder="(Intern / Full Time)" id="reg_role"></li>
-                        <li><input type="text" placeholder="Location" id="reg_location"></li>
-                        <li><input type="file" id="image_uploaded" accept="image/png, image/jpg"></li>
-                        <li><button type="submit" onclick="closeForm(),addEmployeeData()">Submit</button></li> 
+                        <li><input type="text" placeholder="First Name *" id="reg_fname" class="reg_form_lst_inp"></li>
+                        <li><input type="text" placeholder="Last Name" id="reg_lname" class="reg_form_lst_inp"></li>
+                        <li><input type="text" placeholder="Email ID *" id="reg_email" class="reg_form_lst_inp"></li>
+                        <li><input type="text" placeholder="Phone Number *" id="reg_phone" class="reg_form_lst_inp"></li>
+                        <li>
+                            <select id="reg_dept" class="reg_form_lst_inp">
+                                <option selected>Department *</option>
+                                <option>Product Engineer</option>
+                                <option>Quality Assurance</option>
+                                <option>HR</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select id="reg_role" class="reg_form_lst_inp">
+                                <option selected>Role *</option>
+                                <option>Intern</option>
+                                <option>Full Time</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select id="reg_location" class="reg_form_lst_inp">
+                                <option selected>Location *</option>
+                                <option>Madhapur</option>
+                                <option>Kondapur </option>
+                            </select>
+                        </li>
+                        <li><div class="reg_form_img_inp"><span>Image : </span><input type="file" id="image_uploaded" class="reg_form_lst_inp"></div></li>
+                        <li><button type="submit" onclick="addEmployeeData()">Submit</button></li> 
                         <li><button class="close_form" onclick="closeForm()">Close</button></li>
                     </ul>
                 </div>
