@@ -74,7 +74,6 @@ function display(temp)
 
     for(let i=0; i<temp.length; i++)
     {        
-        console.log(x);
         var x = temp[i].split("_");
 
         var field=0, abb="";
@@ -119,14 +118,11 @@ function display(temp)
         {
             if(data[i][field].toLowerCase() === abb.toLowerCase())
             {
-                console.log("---" + field + "  "+data[i][field] + " " + abb)
                 count[i]++
             }
         }
 
     }
-
-    console.log(count)
 
     for(let i=0; i<data.length; i++)
     {
@@ -300,20 +296,33 @@ function generateNewCard(emp_data,i)
             <div class="card_edit_details">
                 <span class = "emp_popup_edit">
                     <div class="name_box">
-                        <input type="text" id="${unq_class_name_popup}_edit_fname" placeholder="${emp_data[0]}" disabled>
-                        <input type="text" placeholder="${emp_data[1]}" disabled id="${unq_class_name_popup}_edit_lname">
+                        <input type="text" id="${unq_class_name_popup}_edit_fname" placeholder="${emp_data[0]}" disabled class="edit_boxes">
+                        <input type="text" placeholder="${emp_data[1]}" disabled id="${unq_class_name_popup}_edit_lname" class="edit_boxes">
                     </div>
-                    <input type="text" placeholder="${emp_data[2]}" disabled id="${unq_class_name_popup}_edit_role"><br>
-                    <input type="text" placeholder="${emp_data[4]}" disabled id="${unq_class_name_popup}_edit_email"><br>
-                    <input type="text" placeholder="${emp_data[6]}" disabled id="${unq_class_name_popup}_edit_phone"><br>
-                    <input type="text" placeholder="${emp_data[5]}" disabled id="${unq_class_name_popup}_edit_dept"><br>
-                    <input type="text" placeholder="${emp_data[7]}" disabled id="${unq_class_name_popup}_edit_loc"><br>
-                    <div class="edit_image_upload">Change Image : <input type="file" id="edit_img"></div>
+                    <select id="${unq_class_name_popup}_edit_role" class="edit_boxes" disabled>
+                        <option disabled selected>${emp_data[2]}</option>
+                        <option>Intern</option>
+                        <option>Full Time</option>
+                    </select>
+                    <input type="text" placeholder="${emp_data[4]}" disabled id="${unq_class_name_popup}_edit_email" class="edit_boxes"><br>
+                    <input type="text" placeholder="${emp_data[6]}" disabled id="${unq_class_name_popup}_edit_phone" class="edit_boxes"><br>
+                    <select id="${unq_class_name_popup}_edit_dept" class="edit_boxes" disabled>
+                        <option disabled selected>${emp_data[5]}</option>
+                        <option>Product Engineer</option>
+                        <option>Quality Assurance</option>
+                        <option>HR</option>
+                    </select>
+                    <select id="${unq_class_name_popup}_edit_loc" class="edit_boxes" disabled>
+                        <option disabled selected>${emp_data[7]}</option>
+                        <option>Madhapur</option>
+                        <option>Kondapur</option>
+                    </select>
+                    <div class="edit_image_upload">Change Image: <input type="file" id="edit_img" disabled></div>
                 </span>
             </div>
             <div class="card_edit_footer">
                 <button onclick="enableInputs('${unq_class_name_popup}')">Edit</button>
-                <button onclick="empPopUpClose('${unq_class_name_popup}','${unq_class_name}'),editEmployeeDetails('${unq_class_name_popup}','${unq_class_name}',${i})">Save</button>
+                <button onclick="editEmployeeDetails('${unq_class_name_popup}','${unq_class_name}',${i})" id="save_edit">Close</button>
             </div>
         </div>
 
@@ -340,6 +349,8 @@ function empPopUpClose(x,y)
 
     emp_card_popup.style.display = "none";
     emp_card.style.display = "unset";
+
+    disableInputs(x);
 }
 
 function empPopUpCloseRem(x,y)
@@ -365,11 +376,43 @@ function enableInputs(x)
     var details = document.getElementById(x);
 
     var input_box = details.getElementsByTagName('input');
+    var select_box = details.getElementsByTagName('select');
     
     for(let i=0; i<input_box.length; i++)
     {
         input_box[i].disabled = false;
     }
+    
+    for(let i=0; i<select_box.length; i++)
+    {
+        select_box[i].disabled = false;
+    }
+
+    var save_btn = document.getElementById("save_edit");
+
+    save_btn.textContent = "Save";
+}
+
+function disableInputs(x)
+{
+    var details = document.getElementById(x);
+
+    var input_box = details.getElementsByTagName('input');
+    var select_box = details.getElementsByTagName('select');
+    
+    for(let i=0; i<input_box.length; i++)
+    {
+        input_box[i].disabled = true;
+    }
+    
+    for(let i=0; i<select_box.length; i++)
+    {
+        select_box[i].disabled = true;
+    }
+
+    var save_btn = document.getElementById("save_edit");
+
+    save_btn.textContent = "Close";
 }
 
 var edit_image_input = document.getElementById("edit_img");
@@ -378,7 +421,7 @@ var up_image = "";
 
 edit_image_input.addEventListener("change", function(event){
     up_image += URL.createObjectURL(event.target.files[0]);
-    console.log(up_image);
+    // console.log(up_image);
 },false);
 
 function editEmployeeDetails(x,y,i)
@@ -387,21 +430,14 @@ function editEmployeeDetails(x,y,i)
     var det = emp_card.getElementsByClassName("emp_card_details");
     var det_loc = emp_card.getElementsByClassName("emp_card_details_location")[0];
 
-    // det[0].innerText = 
     var fname = document.getElementById(x+"_edit_fname").value;
-    //  + " " + 
     var lname = document.getElementById(x+"_edit_lname").value;
-    // det[2].innerText = 
     var role = document.getElementById(x+"_edit_role").value;
-    // det[4].innerText = 
-    var email = document.getElementById(x+"_edit_email").value;
-    // det[6].innerText
-    var phone = document.getElementById(x+"_edit_phone").value;
-    // det[5].innerText
+    var email = document.getElementById(x+"_edit_email");
+    var phone = document.getElementById(x+"_edit_phone");
     var dept = document.getElementById(x+"_edit_dept").value;
-    // det[7].innerText
     var loc = document.getElementById(x+"_edit_loc").value;
-    
+
     var img_id = "card_img_" +i;
 
     var popup_img = document.getElementById(img_id);
@@ -409,10 +445,7 @@ function editEmployeeDetails(x,y,i)
     if(up_image)
         popup_img.setAttribute("src",up_image);
 
-    // popup_img.innerHTML = `<img src=${up_image} alt="image" width= "140px" height="140px">`;
-    // setAttribute("src",up_image);
-
-    console.log(up_image);
+    // console.log(up_image);
 
     if(String(fname))
     {
@@ -429,15 +462,31 @@ function editEmployeeDetails(x,y,i)
         det[2].innerText = role;
         data[i][2] = role;
     }
-    if(String(email))
+    if(String(email.value))
     {
-        det[3].innerText = email;
-        data[i][4] = email;
+        if(isValidEmail(email.value))
+        {
+            det[3].innerText = email.value;
+            data[i][4] = email.value;
+            email.style.borderColor = "none";
+        }
+        else
+        {
+            email.style.borderColor = "Red";
+        }
     }
-    if(String(phone))
+    if(String(phone.value))
     {
-        det[4].innerText = phone;
-        data[i][6] = phone;
+        if(isValidPhone(phone.value))
+        {
+            det[4].innerText = "+91 " + phone.value.substring(0,5) + " " + phone.value.substring(5,10);
+            data[i][6] = phone.value;
+            phone.style.borderColor = "none";
+        }
+        else
+        {
+            phone.style.borderColor = "Red";
+        }
     }
     if(String(dept))
     {
@@ -450,7 +499,29 @@ function editEmployeeDetails(x,y,i)
         data[i][7] = lname;
     }
 
-    // console.log(det);
+    if(isValidEmail(email.value) && isValidPhone(phone.value))
+        empPopUpClose(x,y);
+}
+
+function isValidEmail(email)
+{
+    var b1 = true;
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    
+    if(email!="" && email.match(mailformat)==null)
+        b1=false;
+
+    return b1;
+}
+
+function isValidPhone(phone)
+{
+    var b1 = true;
+    
+    if(phone != "" && (isNaN(phone) || phone.length != 10))
+        b1=false;
+
+    return b1;
 }
 
 function myfunction(c)
@@ -578,22 +649,97 @@ function closeForm()
     bg[0].style.opacity = "100%";
 }
 
-function update_img_status()
-{
-    var status = document.getElementById("image_status");
-
-    status.innerText = "Uploaded";
-}
-
 var image_input = document.getElementById("image_uploaded");
     
 var uploaded_image = "";
 
 image_input.addEventListener("change", function(event){
     uploaded_image = URL.createObjectURL(event.target.files[0]);
-    console.log(uploaded_image);
+    // console.log(uploaded_image);
 });
 
+var isValid = new Array(8);
+var x = new Array(2);
+
+for(let i=0; i<4; i++)
+{
+    x[i] = document.querySelector("#"+reg_form_param[i]);    
+
+    x[i].style.borderStyle = "solid";
+    x[i].style.borderColor = "#C5C5C5";
+
+    var finalColor = ""
+
+    isValid[i] = false;
+
+    x[i].addEventListener('focusin',function(){
+        x[i].style.borderColor = "Red";
+        finalColor = "Red";
+    });
+
+    x[i].addEventListener('keyup', function(){
+        if(i == 1 || i == 0)
+        {
+            if(x[i].value.length != 0)
+            {
+                x[i].style.borderColor = finalColor = "Green";
+                isValid[i] = true;
+            }
+            else
+                x[i].style.borderColor = finalColor = "Red";
+        }
+        if(i == 2)
+        {
+            var email = document.getElementById("reg_email");
+            
+            if(!isValidEmail(email.value,email) || email.value.length == 0)
+                x[i].style.borderColor = finalColor = "Red";
+            else
+            {
+                x[i].style.borderColor = finalColor = "Green";
+                isValid[i] = true;
+            }
+        }
+        if(i == 3)
+        {
+            var phone = document.getElementById("reg_phone");
+
+            if(!isValidPhone(phone.value,phone))
+                x[i].style.borderColor = finalColor = "Red";
+            else
+            {
+                x[i].style.borderColor = finalColor = "Green";
+                isValid[i] = true;
+            }
+        }
+    })
+
+    x[i].addEventListener('focusout',function(){x[i].style.borderColor = finalColor});
+}
+
+var y = document.getElementById("registration_form");
+var y_sel = y.getElementsByTagName('Select');
+
+for(let i=0; i<y_sel.length; i++)
+{
+    y_sel[i].style.borderStyle = "solid";
+    y_sel[i].style.borderColor = "#C5C5C5";
+
+    var finalColor = "";
+    isValid[i+4] = false;
+
+    y_sel[i].addEventListener('change',function(){
+        if(y_sel[i].value !== reg_form_sel_param[i])
+        {
+            y_sel[i].style.borderColor = finalColor = "Green";
+            isValid[i+4] = true;
+        }
+        else
+            finalColor = "Red";
+    });
+
+    y_sel[i].style.borderColor = finalColor;
+}
 
 function addEmployeeData()
 {
@@ -611,15 +757,42 @@ function addEmployeeData()
     emp_data.push(lname);
     emp_data.push(role);
     emp_data.push("assets/nil.jpg");
-    emp_data.push(email + "@technovert.com");
+    emp_data.push(email);
     emp_data.push(dept);
-    emp_data.push(phone);
+    emp_data.push("+91 " + phone.substring(0,5) + " " + phone.substring(5,10));
     emp_data.push(loc);    
 
     if(uploaded_image.length != 0)
     {
         emp_data[3] = uploaded_image;
     }
-    generateNewCard(emp_data);
 
+    var flag = validateForm();
+
+    if(flag.length == 0)
+    {
+        generateNewCard(emp_data);        
+        closeForm();
+    }
+    else
+    {
+        for(let i=0; i<flag.length; i++)
+        {
+            var x = document.querySelector("#"+flag[i]);
+
+            x.style.borderColor = "Red";
+        }
+    }
+}
+
+function validateForm()
+{
+    var temp = []
+    for(let i=0; i<isValid.length; i++)
+    {
+        if(isValid[i] == false)
+            temp.push(reg_form_param[i]);
+    }
+
+    return temp;
 }
