@@ -12,13 +12,23 @@
 const dept_arr = ["Product Engineer", "Quality Assurance", "HR"];
 const branch_arr = ["Madhapur", "Kondapur"];
 const exp_arr = ["Intern", "Full Time"];
+const reg_form_param = [
+    "reg_fname",
+    "reg_lname",
+    "reg_email",
+    "reg_phone",
+    "reg_dept",
+    "reg_role",
+    "reg_location",
+]
+reg_form_sel_param = ["Department *", "Role *", "Location *"]
 
 var data = [
     [
         "Raghavendra",
         "Hareesh",
         "Intern",
-        "assets/har.jpg",
+        "../assets/har.jpg",
         "Raghavendra.p@technovert.com",
         "Product Engineer",
         "+91 76759 43743",
@@ -29,7 +39,7 @@ var data = [
         "Karthik Sai",
         "Varma",
         "Intern",
-        "assets/kar.jpg",
+        "../assets/kar.jpg",
         "Karthik.p@technovert.com",
         "Product Engineer",
         "+91 89788 03288",
@@ -40,7 +50,7 @@ var data = [
         "Bharath",
         "Vaddadi",
         "Intern",
-        "assets/bar.jpeg",
+        "../assets/bar.jpeg",
         "Bharath.v@technovert.com",
         "Product Engineer",
         "+91 88971 83308",
@@ -50,7 +60,7 @@ var data = [
         "Shyam",
         "Sundar",
         "Intern",
-        "assets/shyam.jpeg",
+        "../assets/shyam.jpeg",
         "Shyam.s@technovert.com",
         "Product Engineer",
         "+91 89785 07286",
@@ -60,7 +70,7 @@ var data = [
         "xyz",
         "zzz",
         "Intern",
-        "assets/nil.jpg",
+        "../assets/nil.jpg",
         "xy.@technovert.com",
         "Product Engineer",
         "+91 85274 19632",
@@ -71,7 +81,7 @@ var data = [
         "abc",
         "ccc",
         "Full Time",
-        "assets/nil.jpg",
+        "../assets/nil.jpg",
         "ab.c@technovert.com",
         "HR",
         "+91 99999 88888",
@@ -82,7 +92,7 @@ var data = [
         "def",
         "fff",
         "Intern",
-        "assets/nil.jpg",
+        "../assets/nil.jpg",
         "de.f@technovert.com",
         "Quality Assurance",
         "+91 79241 67842",
@@ -92,7 +102,7 @@ var data = [
         "Person",
         "",
         "Full Time",
-        "assets/nil.jpg",
+        "../assets/nil.jpg",
         "person.n@technovert.com",
         "Product Engineer",
         "+91 78945 63210",
