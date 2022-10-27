@@ -7,7 +7,7 @@ body {
 nav {
   display: flex;
   align-items: center;
-  padding: 0.5em 1em;
+  padding: 1em 1em;
   justify-content: space-between;
   background-color: black;
 }
@@ -16,11 +16,10 @@ nav .navbar {
   align-items: center;
   margin-bottom: 0;
 }
-nav a {
+
+nav .titleLogo a{
   color: white;
   font-family: "Poppins";
-}
-nav .titleLogo {
   font-size: 2em;
   padding-right: 3.5vw;
   font-weight: bolder;
@@ -30,40 +29,29 @@ nav .titleLogo a:hover {
   text-decoration: none;
   color: white;
 }
-nav .menu {
-  display: flex;
-  gap: 5vw;
-}
-nav .menu button {
-  background: transparent;
-  border: none;
+
+nav .menu{
   color: white;
-}
-nav .menu .active {
-  background: rgb(71, 71, 71);
+  font-size: x-large;
   font-weight: bold;
-  padding: 1em;
-  margin: 0;
+  justify-content: center;
 }
 
 .content {
   display: flex;
   padding: 5px;
-  padding-left: 0;
-  padding-top: 0;
-  margin-top: 0;
-  margin-right: 0;
-  width: 100%;
+  padding: 0;
+  /* margin-top: 0; */
+  /* margin-right: 0; */
+  /* width: 100%; */
 }
 
 .content_menu {
   width: 16em;
-  height: 1000px;
-  border-style: inset;
+  height: auto;
   margin-right: 0;
   background-color: rgb(66, 63, 63);
   padding-top: 1em;
-  border: rgb(66, 63, 63);
 }
 .content_menu p, .content_menu span, .content_menu label {
   color: rgba(255, 255, 255, 0.588);
@@ -157,9 +145,7 @@ nav .menu .active {
 .letter {
   display: flex;
   background-color: rgb(66, 63, 63);
-  width: 100%;
   align-items: center;
-  justify-content: right;
 }
 .letter img {
   display: none;
@@ -171,7 +157,7 @@ nav .menu .active {
 
 .letter_filter {
   padding: 1em;
-  padding-left: 0.2em;
+  padding-right: 2em;
   display: inline;
 }
 
@@ -200,6 +186,7 @@ nav .menu .active {
   grid-template-columns: repeat(4, 280px);
   justify-content: center;
   gap: 2vw;
+  padding-bottom: 2em;
 }
 
 .card {
@@ -208,6 +195,7 @@ nav .menu .active {
   border-style: solid;
   margin: 0.5em 1em;
   border-radius: 0.5em;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1500px) {
@@ -324,26 +312,39 @@ nav .menu .active {
 .reg_form_lst{
   display: block;
   list-style: none;
+  padding:1.5em;
+  max-height: 100%;
+  padding-bottom: -1em;
+  margin-bottom: -1em;
 }
 
 .reg_form_lst li{
-  padding: 0.5em;
+  padding: 0.3em;
   font-weight: bold;
 }
 
-.reg_form_lst li input,button{
+.reg_form_lst li button{
   font-weight: lighter;
 }
 
-.reg_form div{
+.reg_form_lst_inp{
+  width: 90%;
+  height: 2.3em;
+  font-weight: lighter;
+  outline: none;
+}
+
+.reg_form_div{
   background-color: rgb(220, 218, 218);
   text-align: center;
   /* width: 25%; */
   /* justify-content: center; */
-  padding-right: 2.5em;
+  /* padding-right: 2.5em; */
   z-index: 1;
   position: fixed;
   border: 2px solid black;
+  top: 14.5em;
+  border-radius: 1em;
 }
 
 .form_title{
@@ -355,8 +356,16 @@ nav .menu .active {
   display: none;
 }
 
-.reg_form label{
-  font-weight: lighter;
+.reg_form_img_inp{
+  text-align: center;
+  padding-left: 3em;
+  margin-right: -3em;
+  border: 0px;
+  display: flex;
+}
+
+.reg_form_img_inp span{
+  width: 75px;
 }
 
 .close_form{
@@ -364,20 +373,12 @@ nav .menu .active {
   background-color: transparent;
   border: none;
   color: blue;
+  margin: 0;
 }
 
 .file_upload{
   /* display: inline; */
   margin-left: 0;
-}
-
-#reg_email{
-  width: 95px;
-}
-
-.reg_form_lst span{
-  /* font-weight: lighter; */
-  font-size: 0.7em;
 }
 
 .emp_popup_div{
@@ -387,10 +388,14 @@ nav .menu .active {
 .card_edit_details{
   padding-top: 1em;
 }
-.emp_popup_edit input{
+.edit_boxes{
   width: 20em;
   height: 3em;
   margin: 0.5em;
+}
+
+.emp_popup_edit input:focus{
+  outline: none;
 }
 
 .card_edit_img img {
@@ -437,4 +442,9 @@ nav .menu .active {
 .card_edit_footer button{
   margin: 0.7em;
   width: 5em;
+}
+
+.error:focus{
+  border: solid;
+  border-color: red;
 }
